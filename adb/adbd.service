@@ -26,15 +26,16 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
 [Unit]
-SourcePath=/etc/launch_adbd
 Description=adbd Service
 Requires=usb.service
 After=usb.service
 DefaultDependencies=no
 
 [Service]
-Type=forking
+Type=simple
 KillMode=process
 Restart=always
-ExecStart=/etc/launch_adbd start
+ExecStartPre=-/etc/default/adbd
+ExecStart=/sbin/adbd
+ExecStartPost=-/etc/launch_adbd
 Nice=-5
