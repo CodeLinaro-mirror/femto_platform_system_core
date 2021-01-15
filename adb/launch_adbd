@@ -29,17 +29,14 @@
 
 export TERM=linux
 
-if [ -f /etc/default/adbd ]; then
-        . /etc/default/adbd
-fi
-echo -n "Launch adb is starting adbd... " > /dev/kmsg
-start-stop-daemon -S -b -a /sbin/adbd
-
 # Check first if the /etc/adb_devid already has an id saved from earlier boot up.
 # If yes, retrive and use it for subsequent boot ups to show in 'adb devices' 
 if [ -s "/etc/adb_devid" ]
 then
-      cat /etc/adb_devid > /sys/class/android_usb/android0/iSerial
+      if [ -f /sys/class/android_usb/android0/iSerial ]
+      then
+           cat /etc/adb_devid > /sys/class/android_usb/android0/iSerial
+      fi
 else
       ret_val=`cat /proc/cmdline | grep "androidboot.serialno" |wc -l`
 
@@ -49,16 +46,18 @@ else
       else
            serial_no=`cat /proc/sys/kernel/random/boot_id | cut -d- -f5`
       fi
-      echo $serial_no > /sys/class/android_usb/android0/iSerial
+      if [ -f /sys/class/android_usb/android0/iSerial ]
+      then
+           echo $serial_no > /sys/class/android_usb/android0/iSerial
+      fi
       echo $serial_no > /etc/adb_devid
 fi
 sync
 
+sleep 1
 # If UDC is not set up set it up.
-if [ -z /sys/kernel/config/usb_gadget/g1/UDC ]; then
-   udcname=`ls -1 /sys/class/udc | head -n 1`
-   echo $udcname > /sys/kernel/config/usb_gadget/g1/UDC
-fi
+udcname=`ls -1 /sys/class/udc | head -n 1`
+echo $udcname > /sys/kernel/config/usb_gadget/g1/UDC
 
 echo -n "Started adbd. " > /dev/kmsg
 
