@@ -132,6 +132,9 @@ case "$1" in
 				mkdir functions/mdm_data.diag
 				echo 1 > functions/mdm_data.diag/in_ep
 				echo 1 > functions/mdm_data.diag/out_ep
+				mkdir functions/mdm_data.dump
+				echo 1 > functions/mdm_data.dump/in_ep
+				echo 1 > functions/mdm_data.dump/out_ep
 				mkdir functions/mdm_data.rmnet
 				echo 1 > functions/mdm_data.rmnet/in_ep
 				echo 1 > functions/mdm_data.rmnet/out_ep
