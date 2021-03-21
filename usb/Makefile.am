@@ -1,4 +1,4 @@
-bin_PROGRAMS = usb_composition_switch
+bin_PROGRAMS = usb_composition_switch usbd
 
 # Program to switch USB compositions
 # =========================================================
@@ -15,3 +15,13 @@ usb_composition_switch_CFLAGS = -O2 \
 usbhost_includedir=$(includedir)/usbhost
 usbhost_include_HEADERS := $(top_srcdir)/include/usbhost/usbhost.h
 
+# Build USB daemon
+
+usbd_SOURCES = usbd.cpp
+
+usbd_LDFLAGS  = -lcutils
+
+usbd_CPPFLAGS = -Wall -Wno-unused-parameter -O2 -g \
+		-Wno-deprecated-declarations \
+		-std=c++14
+usbd_CPPFLAGS += -I$(top_srcdir)/libcutils
