@@ -1,6 +1,4 @@
-#! /bin/sh
-#
-# Copyright (c) 2019-2021, The Linux Foundation. All rights reserved.
+# Copyright (c) 2021 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -27,29 +25,13 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
-set_debug_transport()
-{
-    if [ "$1" == "pcie" ]; then
-        # set adb to pcie mode
-        printf "pcie=true\0" > /data/adb.conf
-        #set usb composition to none
-        echo none > /etc/usb/boot_hsusb_comp
-        echo -n "Debug transport mode is set to pcie. Update /data/debug_transport.conf to usb and reboot to switch" > /dev/kmsg
-    else
-        # set adb tansport to usb mode
-        printf "usb\0" > /data/adb.conf
-        #set usb composition to 901F
-        echo 901F > /etc/usb/boot_hsusb_comp
-        echo -n "Debug transport mode is set to usb. Update /data/debug_transport.conf to pcie and reboot to switch" > /dev/kmsg
-    fi
-}
+[Unit]
+Description=USB daemon Service
+SourcePath=/usr/bin/usbd
 
-# Check for PCIe support
-if [ -e /dev/mhi_ctrl ]; then
-    if [ -e /data/debug_transport.conf ]; then
-        set_debug_transport `cat /data/debug_transport.conf`
-    else
-        printf "pcie\0" > /data/debug_transport.conf
-        set_debug_transport "pcie"
-    fi
-fi
+[Service]
+Type=simple
+RemainAfterExit=yes
+Restart=always
+ExecStart=/usr/bin/usbd
+Nice=-5
