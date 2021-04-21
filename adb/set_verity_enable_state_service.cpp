@@ -295,8 +295,10 @@ void set_verity_enabled_state_service_avb20(int fd, void* cookie)
     }
 
     errout:
-    if (device != -1)
+    if (device != -1) {
+        fsync(device);
         adb_close(device);
+    }
 }
 
 void set_verity_enabled_state_service(int fd, void* cookie)
