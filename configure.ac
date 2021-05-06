@@ -101,16 +101,16 @@ AC_ARG_ENABLE(adb-root,
 AM_CONDITIONAL(ADB_ROOT, [test "x${adb_root}" = "xyes"])
 
 AC_ARG_ENABLE(adb-verity,
-      AC_HELP_STRING([--enable-adb-verity], [ADB disable/enable verity with AVB2.0]),
-         [enable_adb_verity=${enableval}], [enable_adb_verity="no"])
+      AC_HELP_STRING([--enable-adb-verity], [ADB enable verity for avb.]),
+         [adb_verity=${enableval}], [adb_verity="no"])
 
-AM_CONDITIONAL(ADB_VERITY, [test "x${enable_adb_verity}" = "xyes"])
+AM_CONDITIONAL(ADB_VERITY, [test "x${adb_verity}" = "xyes"])
 
-AC_ARG_ENABLE(enable-adb-avb20,
+AC_ARG_ENABLE(adb-avb20,
       AC_HELP_STRING([--enable-adb-avb20], [ADB disable/enable verity with AVB2.0]),
-         [enable_adb_avb20=${enableval}], [enable_adb_avb20="yes"])
+         [adb_avb20=${enableval}], [adb_avb20="yes"])
 
-AM_CONDITIONAL(ADB_AVB20, [test "x${enable_adb_avb20}" = "xyes"])
+AM_CONDITIONAL(ADB_AVB20, [test "x${adb_avb20}" = "xyes"])
 
 AC_ARG_ENABLE(debuggerd,
       AC_HELP_STRING([--disable-debuggerd], [Disable debuggerd for target]),
