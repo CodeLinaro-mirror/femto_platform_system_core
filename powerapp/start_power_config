@@ -402,7 +402,12 @@ case "$1" in
                 chmod 0660 $stm_policy/default
                 chown system:system $stm_policy/default
 
+		echo ondemand > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+		#reduce the min frequency once boot is done
+		echo 1144 > /sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/min_freq
+
                 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
+                echo mem > /sys/power/autosleep
 
                 echo "++++ $0 -> ENABLE-FTRACE START" > /dev/kmsg
                 #Enable FTRACE_ENABLE on SDXLEMUR
@@ -412,7 +417,6 @@ case "$1" in
                     return
                 fi
 
-                echo mem > /sys/power/autosleep
                 #bail out if coresight isn't present
                 if [ ! -d /sys/bus/coresight ]
                 then
