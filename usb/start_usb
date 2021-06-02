@@ -96,6 +96,8 @@ case "$1" in
 		kernel_version=${KERNEL%%.*}
 		if [ "$kernel_version" -ge "5" ]; then
 			mkdir functions/ffs.diag
+			mkdir functions/ffs.diag_mdm
+			mkdir functions/ffs.diag_mdm2
 		fi
 
 		if [ ! -s "/etc/adb_devid" ]
@@ -132,6 +134,10 @@ case "$1" in
 	if [ -e /sys/kernel/config/usb_gadget/g1/functions/ffs.diag ]; then
 		mkdir -p /dev/ffs-diag
 		mount -o uid=2000,gid=2000,no_disconnect=1 -t functionfs diag /dev/ffs-diag
+		mkdir -p /dev/ffs-diag-1
+		mount -o uid=2000,gid=2000,no_disconnect=1 -t functionfs diag_mdm /dev/ffs-diag-1
+		mkdir -p /dev/ffs-diag-2
+		mount -o uid=2000,gid=2000,no_disconnect=1 -t functionfs diag_mdm2 /dev/ffs-diag-2
 	fi
 
 	mount -o remount,gid=5,mode=620 /dev/pts
@@ -177,7 +183,7 @@ case "$1" in
 		*8909* | *8053* | *8017* | *qcs605* | *qcs40x* )
 			echo 901D > /etc/usb/boot_hsusb_comp
 		        ;;
-		*sm8150* | *sm6150* | *sm8195* )
+		*sm8150* | *sm6150* | *sm8195* | *direwolf* )
 			echo 901D > /etc/usb/boot_hsusb_comp
 			if [ -f /sys/bus/platform/devices/a600000.ssusb/mode ]; then
 				default_mode=`cat /sys/bus/platform/devices/a600000.ssusb/mode`
