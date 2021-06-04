@@ -95,10 +95,10 @@ case "$1" in
 		mkdir functions/ipc.ipc
 		mkdir functions/ecm.ecm
 
-		# kernel_version=${KERNEL%%.*}
-		# if [ "$kernel_version" -ge "5" ]; then
-		# 	mkdir functions/ffs.diag
-		# fi
+		kernel_version=${KERNEL%%.*}
+		if [ "$kernel_version" -ge "5" ]; then
+			mkdir functions/ffs.diag
+		fi
 
 		if [ ! -s "/etc/adb_devid" ]
 		then
