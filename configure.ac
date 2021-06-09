@@ -100,6 +100,12 @@ AC_ARG_ENABLE(adb-root,
 
 AM_CONDITIONAL(ADB_ROOT, [test "x${adb_root}" = "xyes"])
 
+AC_ARG_ENABLE(adb-verity,
+      AC_HELP_STRING([--enable-adb-verity], [ADB enable verity for avb.]),
+         [adb_verity=${enableval}], [adb_verity="no"])
+
+AM_CONDITIONAL(ADB_VERITY, [test "x${adb_verity}" = "xyes"])
+
 AC_ARG_ENABLE(adb-avb20,
       AC_HELP_STRING([--enable-adb-avb20], [ADB disable/enable verity with AVB2.0]),
          [adb_avb20=${enableval}], [adb_avb20="yes"])

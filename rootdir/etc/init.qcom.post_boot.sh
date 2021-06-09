@@ -211,7 +211,7 @@ configure_sa6155_sku_parameters() {
         echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
         echo 1017600000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
         echo 3 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val: 1016} > /sys/kernel/debug/aop_send_message
+        echo 1016 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     elif [ $feature_id == 5 ]; then
         echo "SKU Configured : SA6150"
         echo 748800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -235,7 +235,7 @@ configure_sa6155_sku_parameters() {
         echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
         echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
         echo 2 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val: 1333} > /sys/kernel/debug/aop_send_message
+        echo 1333 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     elif [ $feature_id == 4 || $feature_id == 3 ]; then
         echo "SKU Configured : SA6155"
         echo 748800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -259,7 +259,7 @@ configure_sa6155_sku_parameters() {
         echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
         echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
         echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val: 1555} > /sys/kernel/debug/aop_send_message
+        echo 1555 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     else
         echo "Unknown SKU"
         echo 748800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -283,7 +283,7 @@ configure_sa6155_sku_parameters() {
         echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
         echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
         echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val: 1555} > /sys/kernel/debug/aop_send_message
+        echo 1555 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     fi
 }
 
@@ -307,7 +307,7 @@ configure_sa8195_sku_parameters() {
         echo 4 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
         # Setting max gpu freq to 670 MHz
         echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val:2092} > /sys/kernel/debug/aop_send_message
+        echo 2092 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     elif [ $feature_id == 0 ]; then
         echo "SKU Configured : SA8185P"
         echo 1113600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -322,7 +322,7 @@ configure_sa8195_sku_parameters() {
         echo 4 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
         # Setting max gpu freq to 530 MHz
         echo 3 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-        echo {class:ddr, res:fixed, val:1804} > /sys/kernel/debug/aop_send_message
+        echo 1804 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
     else
         echo "Unknown SKU"
     fi

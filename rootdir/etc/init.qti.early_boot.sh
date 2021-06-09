@@ -44,6 +44,12 @@ case "$target" in
             echo 940800000 > $l3lat/min_freq
         done
         ;;
+    "sa6155p" | "sa6155" )
+        for l3lat in /sys/class/devfreq/*qcom,cpu*-cpu-l3-lat
+        do
+            echo 940800000 > $l3lat/min_freq
+        done
+        ;;
     *)
         ;;
 esac
