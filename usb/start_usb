@@ -132,6 +132,9 @@ case "$1" in
 				mkdir functions/mdm_data.diag
 				echo 1 > functions/mdm_data.diag/in_ep
 				echo 1 > functions/mdm_data.diag/out_ep
+				mkdir functions/mdm_data.ramdump
+				echo 1 > functions/mdm_data.ramdump/in_ep
+				echo 1 > functions/mdm_data.ramdump/out_ep
 				mkdir functions/mdm_data.rmnet
 				echo 1 > functions/mdm_data.rmnet/in_ep
 				echo 1 > functions/mdm_data.rmnet/out_ep
@@ -140,6 +143,10 @@ case "$1" in
 				echo 1 > functions/mdm_data.serial/in_ep
 				echo 1 > functions/mdm_data.serial/out_ep
 				echo 1 > functions/mdm_data.serial/int_ep
+				mkdir functions/mdm_data.nmea
+				echo 1 > functions/mdm_data.nmea/in_ep
+				echo 1 > functions/mdm_data.nmea/out_ep
+				echo 1 > functions/mdm_data.nmea/int_ep
 				;;
 		esac
 
