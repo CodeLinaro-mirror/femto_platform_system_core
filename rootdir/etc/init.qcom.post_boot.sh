@@ -366,10 +366,12 @@ case "$target" in
                      echo 1 > /sys/module/msm_thermal/core_control/enabled
                 fi
 
-                # Bring up all cores online
-                echo 1 > /sys/devices/system/cpu/cpu1/online
-                echo 1 > /sys/devices/system/cpu/cpu2/online
-                echo 1 > /sys/devices/system/cpu/cpu3/online
+                if [ $hw_platform != "ADP" ]; then
+                     # Bring up all cores online
+                     echo 1 > /sys/devices/system/cpu/cpu1/online
+                     echo 1 > /sys/devices/system/cpu/cpu2/online
+                     echo 1 > /sys/devices/system/cpu/cpu3/online
+                fi
 
                 # Enable low power modes
 		# Keep L2-retention disabled
