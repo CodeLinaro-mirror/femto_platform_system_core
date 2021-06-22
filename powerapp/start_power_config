@@ -77,11 +77,22 @@ case "$1" in
 
         case "$soc_id" in
         "484")
+                echo -n "Starting powerconfig for sdx12: "
+
                 echo ondemand > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
                 echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
                 echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
                 echo 300000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+                echo mem > /sys/power/autosleep
+                #Mkdir for coresight-stm protocol folder
+                stm_policy=/sys/kernel/config/stp-policy/coresight-stm:p_basic.policy
+                mkdir $stm_policy
+                chmod 0660 $stm_policy
+                chown system:system $stm_policy
+                mkdir $stm_policy/default
+                chmod 0660 $stm_policy/default
+                chown system:system $stm_policy/default
                 ;;
         esac
 

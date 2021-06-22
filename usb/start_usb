@@ -143,6 +143,10 @@ case "$1" in
 				echo 1 > functions/mdm_data.serial/in_ep
 				echo 1 > functions/mdm_data.serial/out_ep
 				echo 1 > functions/mdm_data.serial/int_ep
+				mkdir functions/mdm_data.nmea
+				echo 1 > functions/mdm_data.nmea/in_ep
+				echo 1 > functions/mdm_data.nmea/out_ep
+				echo 1 > functions/mdm_data.nmea/int_ep
 				;;
 		esac
 
