@@ -563,28 +563,12 @@ esac
 
 case "$target" in
     "sa8195p" )
-     # Core control parameters for gold
+     # Core control parameters for gold+
      echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
      echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
      echo 30 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
      echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
-     echo 3 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
-
-     # Core control parameters for gold+
-     echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
-     echo 60 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
-     echo 30 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
-     echo 100 > /sys/devices/system/cpu/cpu7/core_ctl/offline_delay_ms
-     echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/task_thres
-     # Controls how many more tasks should be eligible to run on gold CPUs
-     # w.r.t number of gold CPUs available to trigger assist (max number of
-     # tasks eligible to run on previous cluster minus number of CPUs in
-     # the previous cluster).
-     #
-     # Setting to 1 by default which means there should be at least
-     # 4 tasks eligible to run on gold cluster (tasks running on gold cores
-     # plus misfit tasks on silver cores) to trigger assitance from gold+.
-     echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
+     echo 4 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
 
      # Disable Core control on silver
      echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
@@ -607,19 +591,12 @@ case "$target" in
      echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
      echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
 
-     # configure governor settings for gold cluster
+     # configure governor settings for gold+ cluster
      echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
      echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
      echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
      echo 1612800 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
      echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
-
-     # configure governor settings for gold+ cluster
-     echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-     echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
-     echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
-     echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-     echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
 
      # configure input boost settings
      echo "0:1324800" > /sys/module/cpu_boost/parameters/input_boost_freq
