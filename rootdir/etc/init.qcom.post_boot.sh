@@ -508,6 +508,10 @@ case "$target" in
         done
     done
 
+    echo "post-init: clkscale, auto_hibern8 enable"
+    echo 1 > /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable
+    echo 1 > /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8
+
     echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     #configure_memory_parameters
     configure_sa8155_sku_parameters
@@ -638,6 +642,11 @@ case "$target" in
      else
          echo 1 > /proc/sys/vm/reap_mem_on_sigkill
      fi
+
+     echo "post-init: clkscale, auto_hibern8 enable"
+     echo 1 > /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable
+     echo 1 > /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8
+
     configure_sa8195_sku_parameters
 esac
 
