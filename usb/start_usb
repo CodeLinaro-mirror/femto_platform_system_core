@@ -192,6 +192,13 @@ case "$1" in
 					echo peripheral > /sys/bus/platform/devices/a600000.ssusb/mode
 				    ;;
 				esac
+			elif [ -f /sys/bus/platform/devices/a800000.ssusb/mode ]; then
+				default_mode=`cat /sys/bus/platform/devices/a800000.ssusb/mode`
+				case "$default_mode" in
+				    "none" | "host" )
+					echo peripheral > /sys/bus/platform/devices/a800000.ssusb/mode
+				    ;;
+				esac
 			fi
 		        ;;
 	esac
