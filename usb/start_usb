@@ -93,6 +93,11 @@ case "$1" in
 		mkdir functions/rndis.rndis
 		mkdir functions/ipc.ipc
 
+		#Load NDIS6 driver
+		echo ef >  functions/rndis.rndis/class
+		echo 04 >  functions/rndis.rndis/subclass
+		echo 01 >  functions/rndis.rndis/protocol
+
 		kernel_version=${KERNEL%%.*}
 		if [ "$kernel_version" -ge "5" ]; then
 			mkdir functions/ffs.diag
