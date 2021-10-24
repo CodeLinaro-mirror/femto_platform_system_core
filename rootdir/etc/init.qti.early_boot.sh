@@ -28,10 +28,6 @@
 
 target=`cat /sys/devices/soc0/machine | tr [:upper:] [:lower:]`
 
-echo "early-init:clkscale, autohibern8  disable"
-echo 0 > /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable
-echo 0 > /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8
-
 echo -n "Starting init_early_boot: [$target] "
 
 case "$target" in
