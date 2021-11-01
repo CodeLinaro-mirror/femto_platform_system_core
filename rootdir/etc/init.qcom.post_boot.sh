@@ -619,6 +619,14 @@ case "$target" in
 esac
 
 case "$target" in
+    "sa_direwolf_ivi" )
+     echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
+     # Turn off scheduler boost at the end
+     echo 0 > /proc/sys/kernel/sched_boost
+
+esac
+
+case "$target" in
     "msm8917" | "apq8017")
         if [ -f /sys/devices/soc0/soc_id ]; then
             soc_id=`cat /sys/devices/soc0/soc_id`
