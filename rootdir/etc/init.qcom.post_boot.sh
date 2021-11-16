@@ -510,7 +510,7 @@ case "$target" in
 
     echo "post-init: clkscale, auto_hibern8 enable"
     echo 1 > /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable
-    echo 1 > /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8
+    echo 5000 > /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8
 
     echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     #configure_memory_parameters
