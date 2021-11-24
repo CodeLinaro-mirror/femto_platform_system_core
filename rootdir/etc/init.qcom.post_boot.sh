@@ -155,7 +155,6 @@ configure_sa8155_sku_parameters () {
         echo 2131200 > /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq
         echo 2131200 > /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
         echo 2419200 > /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq
-        echo 4 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
         echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
     elif [ $feature_id == 1 ]; then
         echo "SKU Configured : SA8150"
@@ -175,7 +174,6 @@ configure_sa8155_sku_parameters () {
         echo 1920000 > /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq
         echo 1920000 > /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
         echo 2227200 > /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq
-        echo 4 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
         echo 3 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
     else
         echo "Unknown SKU"
