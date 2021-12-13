@@ -621,7 +621,8 @@ case "$target" in
      echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
      # Turn off scheduler boost at the end
      echo 0 > /proc/sys/kernel/sched_boost
-
+     # Setting min gpu freq to 507 MHz
+     echo 3 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
 esac
 
 case "$target" in
