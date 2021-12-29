@@ -26,7 +26,7 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
 [Unit]
-Description=adbd Service
+Description=Adb Daemon Starter
 Requires=usb.service
 After=usb.service
 DefaultDependencies=no
