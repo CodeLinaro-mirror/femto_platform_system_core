@@ -110,6 +110,7 @@ case "$1" in
 		mkdir functions/uac1.uac1
 		mkdir functions/uac2.0
 		mkdir functions/uvc.0
+		mkdir functions/rndis.rndis
 
 		# Target based instances
 		case `source /sbin/usb/target` in
